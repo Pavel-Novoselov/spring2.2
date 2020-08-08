@@ -25,16 +25,18 @@
         </tbody>
     </table>
 
-<!--    <h2>Add new Item</h2>-->
-<!--    <form name="addDemoForm" novalidate ng-submit="submitDemo()">-->
-<!--        ID:-->
-<!--        <input type="text" ng-model="ademo.id">-->
-<!--        Title:-->
-<!--        <input type="text" ng-model="ademo.title">-->
-<!--        Value:-->
-<!--        <input type="text" ng-model="ademo.value">-->
-<!--        <button type="submit">submit</button>-->
-<!--    </form>-->
+    <h2>Add new Item</h2>
+    <form name="addDemoForm" novalidate ng-submit="submitDemo()">
+        ID:
+        <input type="text" ng-model="ademo.id">
+        Title:
+        <input type="text" ng-model="ademo.title">
+        Price:
+        <input type="text" ng-model="ademo.price">
+<!--        Category:-->
+<!--        <input type="text" ng-model="ademo.category">-->
+        <button type="submit">submit</button>
+    </form>
   </body>
 
 	<script>
@@ -49,13 +51,13 @@
 
 		  fillTable();
 
-          // $scope.submitDemo = function() {
-          //   $http.post('http://localhost:8199/tm/api/v1/demo', $scope.ademo)
-          //     .then(function(response) {
-          //         console.log(123);
-          //         $scope.Demos.push(response.data);
-          //     });
-          // };
+          $scope.submitDemo = function() {
+            $http.post('http://localhost:8189/market/api/v1/products', $scope.ademo)
+              .then(function(response) {
+                  console.log(123);
+                  $scope.Demos.push(response.data);
+              });
+          };
 		});
 	</script>
 </html>

@@ -4,6 +4,7 @@ import com.geekbrains.july.market.entities.Product;
 import com.geekbrains.july.market.entities.dtos.ProductDto;
 import com.geekbrains.july.market.exceptions.ProductNotFoundException;
 import com.geekbrains.july.market.repositories.ProductsRepository;
+import com.geekbrains.july.market.utils.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductsService {
@@ -35,6 +37,12 @@ public class ProductsService {
         return productsRepository.findAll();
     }
 
+    public List<ProductDto> findAllDto() {
+        List<Product>  list = productsRepository.findAll();
+        List<ProductDto> listDto = list.stream().map(p-> ProductMapper.dtoBuild(p)).collect(Collectors.toList());
+        return listDto;
+    }
+
     public Page<Product> findAll(Specification<Product> spec, Integer page) {
         if (page < 1L) {
             page = 1;
@@ -54,7 +62,7 @@ public class ProductsService {
         return productsRepository.existsById(id);
     }
 
-    public List<ProductDto> getDtoData() {
-        return productsRepository.findAllBy();
-    }
+//    public List<ProductDto> getDtoData() {
+//        return productsRepository.findAllBy();
+//    }
 }

@@ -27,17 +27,34 @@ public class RestProductsController {
         this.productsService = productsService;
     }
 
-    @GetMapping("/dto")
-    @ApiOperation("Returns list of all products data transfer objects")
-    public List<ProductDto> getAllProductsDto() {
-        return productsService.getDtoData();
-    }
+//    @GetMapping("/dto")
+//    @ApiOperation("Returns list of all products data transfer objects")
+//    public List<ProductDto> getAllProductsDto() {
+//        return productsService.getDtoData();
+//    }
 
     @GetMapping(produces = "application/json")
     @ApiOperation("Returns list of all products")
-    public List<Product> getAllProducts() {
-        return productsService.findAll();
+    public ResponseEntity<?> getAllProducts() {
+        List<Product> list = productsService.findAll();
+        if (list.isEmpty()) {
+            throw new ProductNotFoundException("Products not found");
+        } else {
+            return new ResponseEntity<>(list, HttpStatus.OK) ;
+        }
     }
+
+    @GetMapping("/allDto")
+    public ResponseEntity<List<ProductDto>> getAllDtoProduct(){
+        List<ProductDto> list = productsService.findAllDto();
+        if (list.isEmpty()) {
+            throw new ProductNotFoundException("Products not found");
+        } else {
+            return new ResponseEntity<>(list, HttpStatus.OK) ;
+        }
+
+    }
+
 
     @GetMapping(value = "/{id}", produces = "application/json")
     @ApiOperation("Returns one product by id")
