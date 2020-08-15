@@ -4,6 +4,7 @@ import com.geekbrains.july.market.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -51,8 +52,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
+//    @Configuration
+//    @Profile("js")
+//    @Order(10)
+//    public class JsSecurityConfig extends WebSecurityConfigurerAdapter {
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            http.authorizeRequests()
+//                .antMatchers("/profile/*").authenticated()
+//                .antMatchers("/orders/*").hasAnyRole("ADMIN")
+//                .antMatchers("/api/v1/*").authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .httpBasic()
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/")
+//                .permitAll()
+//                .and()
+//                .csrf().disable()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        }
+//    }
+
     @Configuration
-    @Order(2)
+    @Order(20)
     public static class UiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
         @Override
