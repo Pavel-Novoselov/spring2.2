@@ -32,6 +32,10 @@ public class Category {
         this.title = title;
     }
 
+    public Category(String title){
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return title;
