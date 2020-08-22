@@ -20,7 +20,15 @@ public class CategoriesService {
         return categoriesRepository.findAll();
     }
 
+    public Category getCategoryById(Long id){
+        return categoriesRepository.getOne(id);
+    }
+
     public List<Category> getCategoriesByIds(List<Long> ids) {
         return categoriesRepository.findAllById(ids);
+    }
+
+    public Category saveCategory (Category category){
+        return categoriesRepository.save(category);
     }
 }
