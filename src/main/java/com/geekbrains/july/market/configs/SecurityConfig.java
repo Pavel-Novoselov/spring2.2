@@ -1,3 +1,4 @@
+/*
 package com.geekbrains.july.market.configs;
 
 import com.geekbrains.july.market.services.UsersService;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
+@Profile("unknown")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UsersService usersService;
 
@@ -111,3 +113,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return auth;
     }
 }
+*/
