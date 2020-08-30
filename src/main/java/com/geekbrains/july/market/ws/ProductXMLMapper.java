@@ -1,7 +1,7 @@
 package com.geekbrains.july.market.ws;
 
 import com.geekbrains.july.market.entities.Product;
-import localhost._8189.market.ws.product.ProductXML;
+import com.geekbrains.july.market.ws.xml.ProductXML;
 
 
 public class ProductXMLMapper {

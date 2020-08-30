@@ -2,8 +2,9 @@ package com.geekbrains.july.market.ws;
 
 import com.geekbrains.july.market.entities.Product;
 import com.geekbrains.july.market.repositories.ProductsRepository;
-import localhost._8189.market.ws.product.GetProductRequest;
-import localhost._8189.market.ws.product.GetProductResponse;
+
+import com.geekbrains.july.market.ws.xml.GetProductRequest;
+import com.geekbrains.july.market.ws.xml.GetProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -12,7 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class ProductEndpoint {
-    private static final String NAMESPACE_URI = "http://localhost:8189/market/ws/xml";
+    private static final String NAMESPACE_URI = "http://localhost:8189/market/ws/";
 
     private ProductsRepository productsRepository;
 //поленился делать сервис))
@@ -21,9 +22,9 @@ public class ProductEndpoint {
         this.productsRepository = productsRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductRequest")
     @ResponsePayload
-    public GetProductResponse getCountry(@RequestPayload GetProductRequest request) {
+    public GetProductResponse getProduct(@RequestPayload GetProductRequest request) {
         GetProductResponse response = new GetProductResponse();
         Product product = productsRepository.findByTitle(request.getTitle());
         response.setProduct(ProductXMLMapper.xmlBuild(product));
