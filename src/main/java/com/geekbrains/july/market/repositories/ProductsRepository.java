@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface ProductsRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 //    List<ProductDto> findAllBy();
+    Product findByTitle(String title);
 }
